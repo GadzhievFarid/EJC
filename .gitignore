@@ -4,3 +4,10 @@
 out
 target
 gen
+src/epam_02/
+
+src/epam_03/
+
+src/epam_04/
+
+test/epam_04/
