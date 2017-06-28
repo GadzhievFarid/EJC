@@ -1,7 +1,17 @@
 package task_02;
 
-public class FlyRocketPowered implements FlyBehavior {
-    public void fly(){
+import java.util.concurrent.ThreadLocalRandom;
 
+public class FlyRocketPowered implements FlyBehavior {
+    public int speed;
+
+    public void fly() {
+        int randomNum = ThreadLocalRandom.current().nextInt(90, 100);
+        speed = randomNum >> 1;
+    }
+
+    @Override
+    public int getSpeed() {
+        return speed;
     }
 }

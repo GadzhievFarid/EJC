@@ -1,8 +1,8 @@
 package task_02;
 
-public class RubberDuck extends Duck {
-    public RubberDuck() {
-        flyBehavior = new FlyRocketPowered();
+public class PekingDuck extends Duck {
+    public PekingDuck() {
+        flyBehavior = new FlyNoWay();
     }
 
     @Override
