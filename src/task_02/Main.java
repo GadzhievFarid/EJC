@@ -1,10 +1,11 @@
 package task_02;
 
+import java.util.Scanner;
 import java.util.concurrent.ThreadLocalRandom;
 
 public class Main {
-    public static void main(String[] args) {
-        Duck[] ducks = new Duck[5];
+
+    static Duck[] init(Duck ducks[]) {
         for (int i = 0; i < 5; i++) {
             int randomNum = ThreadLocalRandom.current().nextInt(0, 5);
             Duck currentDuck;
@@ -29,11 +30,54 @@ public class Main {
             }
             ducks[i] = currentDuck;
         }
+        return ducks;
+    }
 
-        for (int i = 0; i < 5; i++) {
-            ducks[i].performFly();
-            //System.out.println(ducks[i].toString());
-            System.out.println(ducks[i].getClass().getSimpleName() + ": " + ducks[i].getSpeed());
+    public static void main(String[] args) throws InterruptedException {
+
+        int cash = 500;
+        System.out.println("Welcome to the totalizator");
+
+        while (cash > 0) {
+            Duck[] ducks = new Duck[5];
+            init(ducks);
+
+            System.out.println("You have " + cash + "$");
+            System.out.println("Choose your bet:");
+            for (int i = 0; i < 5; i++) {
+                System.out.println((i + 1) + ". " + ducks[i].getClass().getSimpleName());
+            }
+
+            int chosenDuck;
+            Scanner sc = new Scanner(System.in);
+            chosenDuck = sc.nextInt();
+
+            System.out.println("You chose " + ducks[chosenDuck - 1].getClass().getSimpleName() + ".");
+
+            String anim = "|/-\\";
+            for (int x = 0; x < 6; x++) {
+                String data = "\r" + anim.charAt(x % anim.length()) + " " + x * 20 + "%";
+                System.out.print(data);
+                Thread.sleep(500);
+            }
+            System.out.println();
+            int maxSpeed = 0;
+            for (int i = 0; i < 5; i++) {
+                ducks[i].performFly();
+                int currentSpeed = ducks[i].flyBehavior.getSpeed();
+                if (maxSpeed < currentSpeed)
+                    maxSpeed = currentSpeed;
+            }
+
+            if (ducks[chosenDuck - 1].flyBehavior.getSpeed() >= maxSpeed) {
+                System.out.println("You won!");
+                cash += 200;
+            } else {
+                System.out.println("You lost!");
+                cash -= 200;
+            }
         }
+
+        System.out.println("Good luck next time!");
     }
 }
