@@ -52,7 +52,8 @@ public class Main {
             Scanner sc = new Scanner(System.in);
             chosenDuck = sc.nextInt();
 
-            System.out.println("You chose " + ducks[chosenDuck - 1].getClass().getSimpleName() + ".");
+            System.out.println("You chose " + chosenDuck + ". " +
+                    ducks[chosenDuck - 1].getClass().getSimpleName() + ".");
 
             String anim = "|/-\\";
             for (int x = 0; x < 6; x++) {
@@ -62,17 +63,29 @@ public class Main {
             }
             System.out.println();
             int maxSpeed = 0;
+            int indMaxSpeed = 0;
             for (int i = 0; i < 5; i++) {
                 ducks[i].performFly();
                 int currentSpeed = ducks[i].flyBehavior.getSpeed();
-                if (maxSpeed < currentSpeed)
+                if (maxSpeed < currentSpeed) {
                     maxSpeed = currentSpeed;
+                    indMaxSpeed = i;
+                }
             }
 
+            System.out.println((indMaxSpeed + 1) + "." +
+                    ducks[indMaxSpeed].getClass().getSimpleName() + " finished first!");
+
             if (ducks[chosenDuck - 1].flyBehavior.getSpeed() >= maxSpeed) {
+                System.out.println("Your duck flew with speed "
+                        + ducks[chosenDuck - 1].flyBehavior.getSpeed() + " and it was the fastest!");
                 System.out.println("You won!");
                 cash += 200;
             } else {
+                System.out.println("Your duck flew with speed "
+                        + ducks[chosenDuck - 1].flyBehavior.getSpeed() + ", but "
+                        + (indMaxSpeed + 1) + "." + ducks[indMaxSpeed].getClass().getSimpleName() +
+                        " was faster: it's speed was " + ducks[indMaxSpeed].flyBehavior.getSpeed() + ".");
                 System.out.println("You lost!");
                 cash -= 200;
             }
