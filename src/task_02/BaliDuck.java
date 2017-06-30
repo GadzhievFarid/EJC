@@ -6,17 +6,7 @@ public class BaliDuck extends Duck {
     }
 
     @Override
-    public void setSpeed(int value) {
-        this.speed = value;
-    }
-
-    @Override
     public int getSpeed() {
         return flyBehavior.getSpeed();
-    }
-
-    @Override
-    public void display() {
-
     }
 }

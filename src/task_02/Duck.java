@@ -8,14 +8,9 @@ public abstract class Duck {
 
     }
 
-    public abstract void display();
-
     public abstract int getSpeed();
-
-    public abstract void setSpeed(int value);
 
     public void performFly() {
         flyBehavior.fly();
     }
-
 }

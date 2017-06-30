@@ -9,15 +9,4 @@ public class FalklandSteamerDuck extends Duck {
     public int getSpeed() {
         return flyBehavior.getSpeed();
     }
-
-    @Override
-    public void setSpeed(int value) {
-
-    }
-
-    @Override
-    public void display() {
-
-    }
-
 }
