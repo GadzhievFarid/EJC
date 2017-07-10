@@ -29,7 +29,7 @@ public class Main {
         s = s.replaceAll(" ", "");
         StringBuilder reverseS = new StringBuilder(s);
         reverseS = reverseS.reverse();
-        return reverseS.toString().equals(s);
+        return reverseS.toString().equalsIgnoreCase(s);
     }
 
 }
