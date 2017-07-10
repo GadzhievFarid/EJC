@@ -1,15 +1,29 @@
 package task_03;
 
 public class TwoDeckShip extends Ship {
-    TwoDeckShip(){
-        state = State.HEALTHY;
-        size = 2;
+    TwoDeckShip() {
+        this.size = 2;
+        this.decks = new Deck[this.size];
+        for (int i = 0; i < this.size; i++) {
+            decks[i] = new Deck();
+        }
     }
 
-    TwoDeckShip(Position head, Direction direction){
-        state = State.HEALTHY;
-        size = 2;
-        this.head = head;
-        this.direction = direction;
+    @Override
+    boolean isDead() {
+        for (int i = 0; i < this.size; i++) {
+            if (!decks[i].isHit)
+                return false;
+        }
+        return true;
+    }
+
+    @Override
+    Deck getDeck(int x, int y) {
+        for (Deck deck : this.decks) {
+            if (deck.position.equals(new Position(x, y)))
+                return deck;
+        }
+        return null;
     }
 }
