@@ -61,7 +61,8 @@ public class SeaBattle {
             String input = scanner.next();
             x = input.charAt(0);
             y = scanner.nextInt();
-            if(((int)x > 64 && (int)x < 91 || (int)x > 96 || (int)x < 123) && y > 0 && y < 11)
+            if(((int)x > 64 && (int)x < 91 || (int)x > 96 || (int)x < 123)
+                    && y > 0 && y < 11)
                 rightInput = true;
             else
                 System.out.println("You enter wrong coordinates. Try again.");
@@ -70,8 +71,8 @@ public class SeaBattle {
             x = (char)(x - 32);
         if (player.shoot(x - 62, y + 2, ai.battleground)
                 && ai.battleground.numberOfAliveShips != 0) {
-            System.out.println(Colors.RED + "Shoot again!");
             drawBoards(player.battleground, ai.battleground);
+            System.out.println(Colors.RED + "Shoot again!");
             turnPlayer(player, ai);
         }
     }
@@ -117,9 +118,9 @@ public class SeaBattle {
         ai.battleground.addShip(new OneDeckShip());
         ai.battleground.addShip(new OneDeckShip());
 
-        drawBoards(player.battleground, ai.battleground);
-
         System.out.println(Colors.CYAN + "Greetings! Let's play Sea battle!");
+        System.out.println();
+        drawBoards(player.battleground, ai.battleground);
         while (true) {
             System.out.println(Colors.CYAN + "Enter coordinates to shoot!");
             turnPlayer(player, ai);

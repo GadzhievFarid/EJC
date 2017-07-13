@@ -3,6 +3,9 @@ package task_03;
 import java.util.ArrayList;
 import java.util.concurrent.ThreadLocalRandom;
 
+/**
+ * Class that contains board and all the ships.
+ * */
 public class Battleground {
     ArrayList<Ship> ships;
     int numberOfAliveShips;
