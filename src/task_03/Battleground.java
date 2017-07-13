@@ -5,7 +5,7 @@ import java.util.concurrent.ThreadLocalRandom;
 
 /**
  * Class that contains board and all the ships.
- * */
+ */
 public class Battleground {
     ArrayList<Ship> ships;
     int numberOfAliveShips;
@@ -15,9 +15,26 @@ public class Battleground {
         this.numberOfAliveShips = 10;
         this.ships = new ArrayList<>();
         this.board = new State[16][16];
-        for (int i = 0; i < 16; i++)
-            for (int j = 0; j < 16; j++)
+        for (int i = 0; i < 16; i++) {
+            for (int j = 0; j < 16; j++) {
                 board[i][j] = State.EMPTY;
+            }
+        }
+    }
+
+    void init() {
+        for (int i = 0; i < 4; i++) {
+            this.addShip(new OneDeckShip());
+            if (i < 3) {
+                this.addShip(new TwoDeckShip());
+            }
+            if (i < 2) {
+                this.addShip(new ThreeDeckShip());
+            }
+            if (i < 1) {
+                this.addShip(new FourDeckShip());
+            }
+        }
     }
 
     public State[][] getBoard() {
@@ -31,29 +48,37 @@ public class Battleground {
     }
 
     void markNeighbours(int x, int y, State state) {
-        if (board[x - 1][y] != State.HEALTHY && board[x - 1][y] != State.HIT)
+        if (board[x - 1][y] != State.HEALTHY && board[x - 1][y] != State.HIT) {
             board[x - 1][y] = state;
+        }
 
-        if (board[x - 1][y + 1] != State.HEALTHY && board[x - 1][y + 1] != State.HIT)
+        if (board[x - 1][y + 1] != State.HEALTHY && board[x - 1][y + 1] != State.HIT) {
             board[x - 1][y + 1] = state;
+        }
 
-        if (board[x][y + 1] != State.HEALTHY && board[x][y + 1] != State.HIT)
+        if (board[x][y + 1] != State.HEALTHY && board[x][y + 1] != State.HIT) {
             board[x][y + 1] = state;
+        }
 
-        if (board[x + 1][y + 1] != State.HEALTHY && board[x + 1][y + 1] != State.HIT)
+        if (board[x + 1][y + 1] != State.HEALTHY && board[x + 1][y + 1] != State.HIT) {
             board[x + 1][y + 1] = state;
+        }
 
-        if (board[x + 1][y] != State.HEALTHY && board[x + 1][y] != State.HIT)
+        if (board[x + 1][y] != State.HEALTHY && board[x + 1][y] != State.HIT) {
             board[x + 1][y] = state;
+        }
 
-        if (board[x + 1][y - 1] != State.HEALTHY && board[x + 1][y - 1] != State.HIT)
+        if (board[x + 1][y - 1] != State.HEALTHY && board[x + 1][y - 1] != State.HIT) {
             board[x + 1][y - 1] = state;
+        }
 
-        if (board[x][y - 1] != State.HEALTHY && board[x][y - 1] != State.HIT)
+        if (board[x][y - 1] != State.HEALTHY && board[x][y - 1] != State.HIT) {
             board[x][y - 1] = state;
+        }
 
-        if (board[x - 1][y - 1] != State.HEALTHY && board[x - 1][y - 1] != State.HIT)
+        if (board[x - 1][y - 1] != State.HEALTHY && board[x - 1][y - 1] != State.HIT) {
             board[x - 1][y - 1] = state;
+        }
     }
 
     void markNeighbours(Ship ship, State state) {
@@ -130,20 +155,24 @@ public class Battleground {
 
         switch (ship.direction) {
             case UP:
-                for (int i = 0; i < ship.getSize(); i++)
+                for (int i = 0; i < ship.getSize(); i++) {
                     board[ship.head.x][ship.head.y + i] = State.HEALTHY;
+                }
                 break;
             case RIGHT:
-                for (int i = 0; i < ship.getSize(); i++)
+                for (int i = 0; i < ship.getSize(); i++) {
                     board[ship.head.x + i][ship.head.y] = State.HEALTHY;
+                }
                 break;
             case DOWN:
-                for (int i = 0; i < ship.getSize(); i++)
+                for (int i = 0; i < ship.getSize(); i++) {
                     board[ship.head.x][ship.head.y - i] = State.HEALTHY;
+                }
                 break;
             case LEFT:
-                for (int i = 0; i < ship.getSize(); i++)
+                for (int i = 0; i < ship.getSize(); i++) {
                     board[ship.head.x - i][ship.head.y] = State.HEALTHY;
+                }
                 break;
         }
         markNeighbours(ship, State.UNAVAILABLE);

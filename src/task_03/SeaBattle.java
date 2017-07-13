@@ -61,14 +61,14 @@ public class SeaBattle {
             String input = scanner.next();
             x = input.charAt(0);
             y = scanner.nextInt();
-            if(((int)x > 64 && (int)x < 91 || (int)x > 96 || (int)x < 123)
+            if (((int) x > 64 && (int) x < 91 || (int) x > 96 || (int) x < 123)
                     && y > 0 && y < 11)
                 rightInput = true;
             else
                 System.out.println("You enter wrong coordinates. Try again.");
         }
-        if((int)x > 74)
-            x = (char)(x - 32);
+        if ((int) x > 74)
+            x = (char) (x - 32);
         if (player.shoot(x - 62, y + 2, ai.battleground)
                 && ai.battleground.numberOfAliveShips != 0) {
             drawBoards(player.battleground, ai.battleground);
@@ -96,27 +96,8 @@ public class SeaBattle {
         Player player = new Player();
         Player ai = new Player();
 
-        player.battleground.addShip(new FourDeckShip());
-        player.battleground.addShip(new ThreeDeckShip());
-        player.battleground.addShip(new ThreeDeckShip());
-        player.battleground.addShip(new TwoDeckShip());
-        player.battleground.addShip(new TwoDeckShip());
-        player.battleground.addShip(new TwoDeckShip());
-        player.battleground.addShip(new OneDeckShip());
-        player.battleground.addShip(new OneDeckShip());
-        player.battleground.addShip(new OneDeckShip());
-        player.battleground.addShip(new OneDeckShip());
-
-        ai.battleground.addShip(new FourDeckShip());
-        ai.battleground.addShip(new ThreeDeckShip());
-        ai.battleground.addShip(new ThreeDeckShip());
-        ai.battleground.addShip(new TwoDeckShip());
-        ai.battleground.addShip(new TwoDeckShip());
-        ai.battleground.addShip(new TwoDeckShip());
-        ai.battleground.addShip(new OneDeckShip());
-        ai.battleground.addShip(new OneDeckShip());
-        ai.battleground.addShip(new OneDeckShip());
-        ai.battleground.addShip(new OneDeckShip());
+        player.battleground.init();
+        ai.battleground.init();
 
         System.out.println(Colors.CYAN + "Greetings! Let's play Sea battle!");
         System.out.println();

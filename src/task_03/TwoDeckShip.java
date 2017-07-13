@@ -12,8 +12,9 @@ public class TwoDeckShip extends Ship {
     @Override
     boolean isDead() {
         for (int i = 0; i < this.size; i++) {
-            if (!decks[i].isHit)
+            if (!decks[i].isHit) {
                 return false;
+            }
         }
         return true;
     }
@@ -21,8 +22,9 @@ public class TwoDeckShip extends Ship {
     @Override
     Deck getDeck(int x, int y) {
         for (Deck deck : this.decks) {
-            if (deck.position.equals(new Position(x, y)))
+            if (deck.position.equals(new Position(x, y))) {
                 return deck;
+            }
         }
         return null;
     }
