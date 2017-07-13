@@ -20,30 +20,30 @@ public class SeaBattle {
             char aLetter = 65;
             System.out.print(Colors.RESET + (char) (aLetter + i - 3) + " ");
             for (int j = 3; j < 13; j++) {
-                if (playerBattleground.getBoard()[i][j] == 0)
+                if (playerBattleground.getBoard()[i][j] == State.EMPTY)
                     System.out.print(Colors.WHITE + asciiSquare + " ");
-                else if (playerBattleground.getBoard()[i][j] == 1) {
+                else if (playerBattleground.getBoard()[i][j] == State.HEALTHY) {
                     System.out.print(Colors.CYAN + asciiSquare + " ");
-                } else if (playerBattleground.getBoard()[i][j] == 2) {
+                } else if (playerBattleground.getBoard()[i][j] == State.UNAVAILABLE) {
                     System.out.print(Colors.WHITE + asciiSquare + " ");
-                } else if (playerBattleground.getBoard()[i][j] == 3) {
+                } else if (playerBattleground.getBoard()[i][j] == State.HIT) {
                     System.out.print(Colors.RED + asciiSquare + " ");
-                } else if (playerBattleground.getBoard()[i][j] == 4) {
+                } else if (playerBattleground.getBoard()[i][j] == State.MISS) {
                     System.out.print(Colors.YELLOW + asciiSquare + " ");
                 }
             }
             System.out.print("      ");
             System.out.print(Colors.RESET + (char) (aLetter + i - 3) + " ");
             for (int j = 3; j < 13; j++) {
-                if (aiBattleground.getBoard()[i][j] == 0)
+                if (aiBattleground.getBoard()[i][j] == State.EMPTY)
                     System.out.print(Colors.WHITE + asciiSquare + " ");
-                else if (aiBattleground.getBoard()[i][j] == 1) {
+                else if (aiBattleground.getBoard()[i][j] == State.HEALTHY) {
                     System.out.print(Colors.WHITE + asciiSquare + " ");
-                } else if (aiBattleground.getBoard()[i][j] == 2) {
+                } else if (aiBattleground.getBoard()[i][j] == State.UNAVAILABLE) {
                     System.out.print(Colors.WHITE + asciiSquare + " ");
-                } else if (aiBattleground.getBoard()[i][j] == 3) {
+                } else if (aiBattleground.getBoard()[i][j] == State.HIT) {
                     System.out.print(Colors.RED + asciiSquare + " ");
-                } else if (aiBattleground.getBoard()[i][j] == 4) {
+                } else if (aiBattleground.getBoard()[i][j] == State.MISS) {
                     System.out.print(Colors.YELLOW + asciiSquare + " ");
                 }
             }
@@ -79,7 +79,7 @@ public class SeaBattle {
     void turnAI(Player player, Player ai) {
         int x = ThreadLocalRandom.current().nextInt(3, 13);
         int y = ThreadLocalRandom.current().nextInt(3, 13);
-        if (player.battleground.getBoard()[x][y] == 4) {
+        if (player.battleground.getBoard()[x][y] == State.MISS) {
             turnAI(player, ai);
             return;
         }

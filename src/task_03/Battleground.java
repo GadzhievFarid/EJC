@@ -6,18 +6,18 @@ import java.util.concurrent.ThreadLocalRandom;
 public class Battleground {
     ArrayList<Ship> ships;
     int numberOfAliveShips;
-    private int[][] board;
+    private State[][] board;
 
     Battleground() {
         this.numberOfAliveShips = 10;
         this.ships = new ArrayList<>();
-        this.board = new int[16][16];
+        this.board = new State[16][16];
         for (int i = 0; i < 16; i++)
             for (int j = 0; j < 16; j++)
-                board[i][j] = 0;
+                board[i][j] = State.EMPTY;
     }
 
-    public int[][] getBoard() {
+    public State[][] getBoard() {
         return board;
     }
 
@@ -27,35 +27,35 @@ public class Battleground {
         return direction;
     }
 
-    void markNeighbours(int x, int y, int value) {
-        if (board[x - 1][y] != 1 && board[x - 1][y] != 3)
-            board[x - 1][y] = value;
+    void markNeighbours(int x, int y, State state) {
+        if (board[x - 1][y] != State.HEALTHY && board[x - 1][y] != State.HIT)
+            board[x - 1][y] = state;
 
-        if (board[x - 1][y + 1] != 1 && board[x - 1][y + 1] != 3)
-            board[x - 1][y + 1] = value;
+        if (board[x - 1][y + 1] != State.HEALTHY && board[x - 1][y + 1] != State.HIT)
+            board[x - 1][y + 1] = state;
 
-        if (board[x][y + 1] != 1 && board[x][y + 1] != 3)
-            board[x][y + 1] = value;
+        if (board[x][y + 1] != State.HEALTHY && board[x][y + 1] != State.HIT)
+            board[x][y + 1] = state;
 
-        if (board[x + 1][y + 1] != 1 && board[x + 1][y + 1] != 3)
-            board[x + 1][y + 1] = value;
+        if (board[x + 1][y + 1] != State.HEALTHY && board[x + 1][y + 1] != State.HIT)
+            board[x + 1][y + 1] = state;
 
-        if (board[x + 1][y] != 1 && board[x + 1][y] != 3)
-            board[x + 1][y] = value;
+        if (board[x + 1][y] != State.HEALTHY && board[x + 1][y] != State.HIT)
+            board[x + 1][y] = state;
 
-        if (board[x + 1][y - 1] != 1 && board[x + 1][y - 1] != 3)
-            board[x + 1][y - 1] = value;
+        if (board[x + 1][y - 1] != State.HEALTHY && board[x + 1][y - 1] != State.HIT)
+            board[x + 1][y - 1] = state;
 
-        if (board[x][y - 1] != 1 && board[x][y - 1] != 3)
-            board[x][y - 1] = value;
+        if (board[x][y - 1] != State.HEALTHY && board[x][y - 1] != State.HIT)
+            board[x][y - 1] = state;
 
-        if (board[x - 1][y - 1] != 1 && board[x - 1][y - 1] != 3)
-            board[x - 1][y - 1] = value;
+        if (board[x - 1][y - 1] != State.HEALTHY && board[x - 1][y - 1] != State.HIT)
+            board[x - 1][y - 1] = state;
     }
 
-    void markNeighbours(Ship ship, int value) {
+    void markNeighbours(Ship ship, State state) {
         for (Deck deck : ship.decks) {
-            markNeighbours(deck.getPosition().x, deck.getPosition().y, value);
+            markNeighbours(deck.getPosition().x, deck.getPosition().y, state);
         }
     }
 
@@ -74,7 +74,7 @@ public class Battleground {
                             shipAdded = false;
                             break;
                         }
-                        if (board[headx][heady + i] != 0) {
+                        if (board[headx][heady + i] != State.EMPTY) {
                             shipAdded = false;
                             break;
                         }
@@ -87,7 +87,7 @@ public class Battleground {
                             shipAdded = false;
                             break;
                         }
-                        if (board[headx + i][heady] != 0) {
+                        if (board[headx + i][heady] != State.EMPTY) {
                             shipAdded = false;
                             break;
                         }
@@ -100,7 +100,7 @@ public class Battleground {
                             shipAdded = false;
                             break;
                         }
-                        if (board[headx][heady - i] != 0) {
+                        if (board[headx][heady - i] != State.EMPTY) {
                             shipAdded = false;
                             break;
                         }
@@ -113,7 +113,7 @@ public class Battleground {
                             shipAdded = false;
                             break;
                         }
-                        if (board[headx - i][heady] != 0) {
+                        if (board[headx - i][heady] != State.EMPTY) {
                             shipAdded = false;
                             break;
                         }
@@ -128,22 +128,22 @@ public class Battleground {
         switch (ship.direction) {
             case UP:
                 for (int i = 0; i < ship.getSize(); i++)
-                    board[ship.head.x][ship.head.y + i] = 1;
+                    board[ship.head.x][ship.head.y + i] = State.HEALTHY;
                 break;
             case RIGHT:
                 for (int i = 0; i < ship.getSize(); i++)
-                    board[ship.head.x + i][ship.head.y] = 1;
+                    board[ship.head.x + i][ship.head.y] = State.HEALTHY;
                 break;
             case DOWN:
                 for (int i = 0; i < ship.getSize(); i++)
-                    board[ship.head.x][ship.head.y - i] = 1;
+                    board[ship.head.x][ship.head.y - i] = State.HEALTHY;
                 break;
             case LEFT:
                 for (int i = 0; i < ship.getSize(); i++)
-                    board[ship.head.x - i][ship.head.y] = 1;
+                    board[ship.head.x - i][ship.head.y] = State.HEALTHY;
                 break;
         }
-        markNeighbours(ship, 2);
+        markNeighbours(ship, State.UNAVAILABLE);
     }
 
     Ship getShipByCoordinates(int x, int y) {
