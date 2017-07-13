@@ -18,8 +18,8 @@ public class Main {
     }
 
     /**
-    * Дано слово s1. Получить слово s2, образованное нечетными буквами слова s1.
-    */
+     * Дано слово s1. Получить слово s2, образованное нечетными буквами слова s1.
+     */
     String returnOdd(String string) {
         String oddString = "";
         for (int i = 0; i < string.length(); i += 2)

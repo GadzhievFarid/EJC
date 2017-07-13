@@ -13,10 +13,10 @@ public class Player {
             return false;
         } else if (battleground.getBoard()[x][y] == 1) {
             battleground.getBoard()[x][y] = 3;
-            battleground.getShip(x, y).getDeck(x, y).isHit = true;
-            if (battleground.getShip(x, y).isDead()) {
+            battleground.getShipByCoordinates(x, y).getDeck(x, y).isHit = true;
+            if (battleground.getShipByCoordinates(x, y).isDead()) {
                 battleground.numberOfAliveShips--;
-                battleground.markNeighbours(battleground.getShip(x, y), 4);
+                battleground.markNeighbours(battleground.getShipByCoordinates(x, y), 4);
             }
             return true;
         } else if (battleground.getBoard()[x][y] == 2) {

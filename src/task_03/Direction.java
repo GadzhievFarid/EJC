@@ -11,9 +11,8 @@ public enum Direction {
     static Map<Integer, Direction> map = new HashMap<>();
 
     static {
-        for (Direction catalog : Direction.values()) {
+        for (Direction catalog : Direction.values())
             map.put(catalog.id, catalog);
-        }
     }
 
     public int id;

@@ -21,7 +21,7 @@ public class Battleground {
         return board;
     }
 
-    Direction getDirection() {
+    Direction getRandomDirection() {
         int temp = ThreadLocalRandom.current().nextInt(0, 4);
         Direction direction = Direction.getByCode(temp);
         return direction;
@@ -66,7 +66,7 @@ public class Battleground {
             int headx = ThreadLocalRandom.current().nextInt(3, 13);
             int heady = ThreadLocalRandom.current().nextInt(3, 13);
             ship.head = new Position(headx, heady);
-            ship.direction = getDirection();
+            ship.direction = getRandomDirection();
             switch (ship.direction) {
                 case UP:
                     for (int i = 0; i < ship.getSize(); i++) {
@@ -127,33 +127,26 @@ public class Battleground {
 
         switch (ship.direction) {
             case UP:
-                for (int i = 0; i < ship.getSize(); i++) {
+                for (int i = 0; i < ship.getSize(); i++)
                     board[ship.head.x][ship.head.y + i] = 1;
-                    markNeighbours(ship.head.x, ship.head.y + i, 2);
-                }
                 break;
             case RIGHT:
-                for (int i = 0; i < ship.getSize(); i++) {
+                for (int i = 0; i < ship.getSize(); i++)
                     board[ship.head.x + i][ship.head.y] = 1;
-                    markNeighbours(ship.head.x + i, ship.head.y, 2);
-                }
                 break;
             case DOWN:
-                for (int i = 0; i < ship.getSize(); i++) {
+                for (int i = 0; i < ship.getSize(); i++)
                     board[ship.head.x][ship.head.y - i] = 1;
-                    markNeighbours(ship.head.x, ship.head.y - i, 2);
-                }
                 break;
             case LEFT:
-                for (int i = 0; i < ship.getSize(); i++) {
+                for (int i = 0; i < ship.getSize(); i++)
                     board[ship.head.x - i][ship.head.y] = 1;
-                    markNeighbours(ship.head.x - i, ship.head.y, 2);
-                }
                 break;
         }
+        markNeighbours(ship, 2);
     }
 
-    Ship getShip(int x, int y) {
+    Ship getShipByCoordinates(int x, int y) {
         for (Ship ship : ships) {
             for (int i = 0; i < ship.getSize(); i++) {
                 if (ship.decks[i].position.equals(new Position(x, y)))
