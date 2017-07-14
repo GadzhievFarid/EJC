@@ -22,20 +22,25 @@ public class Main {
      * Дан текст. Найти наибольшее количество идущих подряд одинаковых символов.
      * */
     int numberOfSameConsecutiveChars(String string) {
-        int currentLength = 1;
-        int maxLength = 0;
-        for (int i = 1; i < string.length(); i++) {
-            if (string.charAt(i) == string.charAt(i - 1)) {
-                currentLength++;
-            }
-            if (currentLength > maxLength) {
-                maxLength = currentLength;
-            }
-            if (string.charAt(i) != string.charAt(i - 1)) {
-                currentLength = 1;
-            }
+        if(string.length() == 0){
+            return 0;
         }
-        return maxLength;
+        else {
+            int currentLength = 1;
+            int maxLength = 1;
+            for (int i = 1; i < string.length(); i++) {
+                if (string.charAt(i) == string.charAt(i - 1)) {
+                    currentLength++;
+                }
+                if (currentLength > maxLength) {
+                    maxLength = currentLength;
+                }
+                if (string.charAt(i) != string.charAt(i - 1)) {
+                    currentLength = 1;
+                }
+            }
+            return maxLength;
+        }
     }
 
     /**
