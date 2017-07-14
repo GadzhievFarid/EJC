@@ -2,7 +2,9 @@ package task_03;
 
 import java.util.HashMap;
 import java.util.Map;
-
+/**
+ * Indicates current state of a square on a battlefield.
+ * */
 public enum State {
     EMPTY(0),
     HEALTHY(1),

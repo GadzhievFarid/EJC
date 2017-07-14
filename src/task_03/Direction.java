@@ -2,7 +2,9 @@ package task_03;
 
 import java.util.HashMap;
 import java.util.Map;
-
+/**
+ * The Direction class provides direction in which ship will be building.
+ * */
 public enum Direction {
     UP(0),
     RIGHT(1),

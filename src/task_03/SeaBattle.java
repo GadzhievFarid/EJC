@@ -52,24 +52,27 @@ public class SeaBattle {
     }
 
     void turnPlayer(Player player, Player ai) {
-
         boolean rightInput = false;
-        char x = ' ';
-        int y = -1;
+        char row = ' ';
+        int column = -1;
         while (!rightInput) {
             Scanner scanner = new Scanner(System.in);
             String input = scanner.next();
-            x = input.charAt(0);
-            y = scanner.nextInt();
-            if (((int) x > 64 && (int) x < 91 || (int) x > 96 || (int) x < 123)
-                    && y > 0 && y < 11)
+            row = input.charAt(0);
+            if(row == 'q' || row == 'Q'){
+                player.toGiveUp = true;
+                return;
+            }
+            column = scanner.nextInt();
+            if (Character.isLetter(row) && ((int) row > 64 && (int) row < 75 || (int) row > 96 && (int) row < 107)
+                    && column > 0 && column < 11)
                 rightInput = true;
             else
                 System.out.println("You enter wrong coordinates. Try again.");
         }
-        if ((int) x > 74)
-            x = (char) (x - 32);
-        if (player.shoot(x - 62, y + 2, ai.battleground)
+        if ((int) row > 74)
+            row = (char) (row - 32);
+        if (player.shoot(row - 62, column + 2, ai.battleground)
                 && ai.battleground.numberOfAliveShips != 0) {
             drawBoards(player.battleground, ai.battleground);
             System.out.println(Colors.RED + "Shoot again!");
@@ -78,14 +81,14 @@ public class SeaBattle {
     }
 
     void turnAI(Player player, Player ai) {
-        int x = ThreadLocalRandom.current().nextInt(3, 13);
-        int y = ThreadLocalRandom.current().nextInt(3, 13);
-        if (player.battleground.getBoard()[x][y] == State.MISS) {
+        int row = ThreadLocalRandom.current().nextInt(3, 13);
+        int column = ThreadLocalRandom.current().nextInt(3, 13);
+        if (player.battleground.getBoard()[row][column] == State.MISS) {
             turnAI(player, ai);
             return;
         }
-        System.out.println(Colors.CYAN + "Computer shot at " + (char) (x + 62) + " " + (y - 2));
-        if (ai.shoot(x, y, player.battleground)
+        System.out.println(Colors.CYAN + "Computer shot at " + (char) (row + 62) + " " + (column - 2));
+        if (ai.shoot(row, column, player.battleground)
                 && player.battleground.numberOfAliveShips != 0) {
             drawBoards(player.battleground, ai.battleground);
             turnAI(player, ai);
@@ -100,11 +103,16 @@ public class SeaBattle {
         ai.battleground.init();
 
         System.out.println(Colors.CYAN + "Greetings! Let's play Sea battle!");
+        System.out.println("If you want to leave type q");
         System.out.println();
         drawBoards(player.battleground, ai.battleground);
-        while (true) {
+        while (player.toGiveUp == false) {
             System.out.println(Colors.CYAN + "Enter coordinates to shoot!");
             turnPlayer(player, ai);
+            if(player.toGiveUp == true){
+                System.out.println("It's a pity that you give up.");
+                break;
+            }
             turnAI(player, ai);
             drawBoards(player.battleground, ai.battleground);
             if (ai.battleground.numberOfAliveShips == 0) {

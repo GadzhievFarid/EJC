@@ -4,7 +4,8 @@ import java.util.ArrayList;
 import java.util.concurrent.ThreadLocalRandom;
 
 /**
- * Class that contains board and all the ships.
+ * The Battleground class provides board for the game
+ * and contains all the ships on that board.
  */
 public class Battleground {
     ArrayList<Ship> ships;

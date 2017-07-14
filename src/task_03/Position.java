@@ -1,5 +1,7 @@
 package task_03;
-
+/**
+ * The Position class provides point on plane.
+ * */
 public class Position {
     int x;
     int y;

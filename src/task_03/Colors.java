@@ -1,5 +1,7 @@
 package task_03;
-
+/**
+ * The Colors class containing colors for ship painting.
+ * */
 public class Colors {
     public static final String RESET = "\u001B[0m";
     public static final String BLACK = "\u001B[30m";
