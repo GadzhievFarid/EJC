@@ -15,7 +15,7 @@ public class Main {
         }
         Main main = new Main();
         System.out.println("Maximum number of same consecutive chars = " + main.numberOfSameConsecutiveChars(input));
-        System.out.println("Number of different chars = " + main.numberOfDifferentChars(input));
+        System.out.println("Number of different letters = " + main.numberOfDifferentLetters(input));
     }
 
     int numberOfSameConsecutiveChars(String string) {
@@ -35,10 +35,11 @@ public class Main {
         return maxLength;
     }
 
-    int numberOfDifferentChars(String string) {
+    int numberOfDifferentLetters(String string) {
         HashSet set = new HashSet<>();
         for (int i = 0; i < string.length(); i++) {
-            set.add(string.charAt(i));
+            if (Character.isAlphabetic(string.charAt(i)))
+                set.add(string.charAt(i));
         }
         return set.size();
     }
