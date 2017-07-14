@@ -18,6 +18,9 @@ public class Main {
         System.out.println("Number of different letters = " + main.numberOfDifferentLetters(input));
     }
 
+    /**
+     * Дан текст. Найти наибольшее количество идущих подряд одинаковых символов.
+     * */
     int numberOfSameConsecutiveChars(String string) {
         int currentLength = 1;
         int maxLength = 0;
@@ -35,6 +38,9 @@ public class Main {
         return maxLength;
     }
 
+    /**
+     * Дано слово. Определить, сколько различных букв в нем.
+     * */
     int numberOfDifferentLetters(String string) {
         HashSet set = new HashSet<>();
         for (int i = 0; i < string.length(); i++) {
