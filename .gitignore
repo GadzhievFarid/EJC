@@ -4,26 +4,40 @@
 out
 target
 gen
-src/epam_02/
 
-src/epam_03/
-
-src/epam_04/
-
-test/epam_04/
+src/main/java/epam_02/
 
 
-src/epam_05/
-src/epam_06/
+src/main/java/epam_03/
 
-src/epam_07/
 
-src/epam_08/
+src/main/java/epam_04/
 
-src/epam_09/
 
-src/epam_10/
+src/main/java/epam_05/
 
-test/epam_11/
 
-src/epam_11/
+src/main/java/epam_06/
+
+
+src/main/java/epam_07/
+
+
+src/main/java/epam_08/
+
+
+src/main/java/epam_09/
+
+
+src/main/java/epam_10/
+
+
+src/main/java/epam_11/
+
+
+src/main/java/epam_12/
+
+
+
+
+text\.txt

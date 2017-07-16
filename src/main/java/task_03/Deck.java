@@ -1,7 +1,8 @@
-package task_03;
+package main.java.task_03;
+
 /**
  * The Deck class provides base object for ships building.
- * */
+ */
 public class Deck {
     boolean isHit;
     Position position;

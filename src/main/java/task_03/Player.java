@@ -1,10 +1,12 @@
-package task_03;
+package main.java.task_03;
+
 /**
  * The Player class provides ability to shoot ships.
- * */
+ */
 public class Player {
     Battleground battleground;
     boolean toGiveUp;
+
     Player() {
         this.battleground = new Battleground();
         this.toGiveUp = false;
@@ -16,7 +18,7 @@ public class Player {
             return false;
         } else if (battleground.getBoard()[x][y] == State.HEALTHY) {
             battleground.getBoard()[x][y] = State.HIT;
-            battleground.getShipByCoordinates(x, y).getDeck(x, y).isHit = true;
+            battleground.getShipByCoordinates(x, y).getDeckByCoordinates(x, y).isHit = true;
             if (battleground.getShipByCoordinates(x, y).isDead()) {
                 battleground.numberOfAliveShips--;
                 battleground.markNeighbours(battleground.getShipByCoordinates(x, y), State.MISS);

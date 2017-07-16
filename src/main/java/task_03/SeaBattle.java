@@ -1,4 +1,4 @@
-package task_03;
+package main.java.task_03;
 
 import java.util.Scanner;
 import java.util.concurrent.ThreadLocalRandom;
@@ -59,7 +59,7 @@ public class SeaBattle {
             Scanner scanner = new Scanner(System.in);
             String input = scanner.next();
             row = input.charAt(0);
-            if(row == 'q' || row == 'Q'){
+            if (row == 'q' || row == 'Q') {
                 player.toGiveUp = true;
                 return;
             }
@@ -109,7 +109,7 @@ public class SeaBattle {
         while (player.toGiveUp == false) {
             System.out.println(Colors.CYAN + "Enter coordinates to shoot!");
             turnPlayer(player, ai);
-            if(player.toGiveUp == true){
+            if (player.toGiveUp == true) {
                 System.out.println("It's a pity that you give up.");
                 break;
             }
