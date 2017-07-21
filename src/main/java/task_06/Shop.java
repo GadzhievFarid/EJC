@@ -1,4 +1,4 @@
-package main.java.task_06;
+package task_06;
 
 public class Shop extends Thread {
     private static final int priceOfSausage = 10;

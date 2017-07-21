@@ -1,4 +1,4 @@
-package main.java.task_06;
+package task_06;
 
 import java.io.IOException;
 

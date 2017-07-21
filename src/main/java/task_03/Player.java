@@ -1,4 +1,4 @@
-package main.java.task_03;
+package task_03;
 
 /**
  * The Player class provides ability to shoot ships.

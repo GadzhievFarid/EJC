@@ -1,4 +1,4 @@
-package main.java.task_03;
+package task_03;
 
 /**
  * The Position class provides point on plane.

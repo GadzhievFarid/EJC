@@ -1,4 +1,4 @@
-package main.java.task_03;
+package task_03;
 
 public class OneDeckShip extends Ship {
     OneDeckShip() {
