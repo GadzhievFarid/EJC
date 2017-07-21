@@ -5,43 +5,9 @@ out
 target
 gen
 
-src/main/java/epam_02/
-
-
-src/main/java/epam_03/
-
-
-src/main/java/epam_04/
-
-
-src/main/java/epam_05/
-
-
-src/main/java/epam_06/
-
-
-src/main/java/epam_07/
-
-
-src/main/java/epam_08/
-
-
-src/main/java/epam_09/
-
-
-src/main/java/epam_10/
-
-
-src/main/java/epam_11/
-
-
-src/main/java/epam_12/
-
-
-
-
 text\.txt
+test/epam/
 
-src/main/java/epam_13/
 
-src/main/java/epam_14/
+
+src/main/java/epam/
