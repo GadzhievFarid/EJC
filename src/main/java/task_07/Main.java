@@ -1,5 +1,8 @@
 package task_07;
 
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
 import java.util.concurrent.ThreadLocalRandom;
 
 /**
@@ -37,15 +40,12 @@ public class Main {
     void invokeQuicksort() {
         int[] arrayToQuicksort = new int[25];
 
-       /* try (BufferedReader reader = new BufferedReader(new InputStreamReader(System.in))) {
+        try (BufferedReader reader = new BufferedReader(new InputStreamReader(System.in))) {
             for (int i = 0; i < arrayToQuicksort.length; i++) {
                 arrayToQuicksort[i] = Integer.parseInt(reader.readLine());
             }
         } catch (IOException e) {
             e.printStackTrace();
-        }*/
-        for (int i = 0; i < arrayToQuicksort.length; i++) {
-            arrayToQuicksort[i] = ThreadLocalRandom.current().nextInt(0, 1000);
         }
 
         for (int i = 0; i < arrayToQuicksort.length; i++) {
@@ -91,9 +91,12 @@ public class Main {
                 }
             }
             if (left < right) {
-                swap(arrayToQuicksort, left, right);
+                if (arrayToQuicksort[left] == arrayToQuicksort[right]) {
+                    left++;
+                } else {
+                    swap(arrayToQuicksort, left, right);
+                }
             }
-
         }
         return left;
     }
