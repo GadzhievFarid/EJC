@@ -11,14 +11,14 @@ import java.util.concurrent.ThreadLocalRandom;
  * Делаете Quick Sort и выводите после сортировки.
  * Введите 100 чисел через рандом, 0..1000, Insertion Sort.
  **/
-public class Main {
+public class QuickAndInsertion {
     public static void main(String[] args) {
-        Main main = new Main();
-        main.invokeInsertionSort();
-        main.invokeQuicksort();
+        QuickAndInsertion quickAndInsertion = new QuickAndInsertion();
+        quickAndInsertion.invokeInsertionSort();
+        quickAndInsertion.invokeQuicksort();
     }
 
-    void invokeInsertionSort() {
+    private void invokeInsertionSort() {
         int[] arrayToInsertionSort = new int[100];
         for (int i = 0; i < arrayToInsertionSort.length; i++) {
             arrayToInsertionSort[i] = ThreadLocalRandom.current().nextInt(0, 1000);
@@ -37,7 +37,7 @@ public class Main {
         System.out.println();
     }
 
-    void invokeQuicksort() {
+    private void invokeQuicksort() {
         int[] arrayToQuicksort = new int[25];
 
         try (BufferedReader reader = new BufferedReader(new InputStreamReader(System.in))) {
@@ -73,32 +73,32 @@ public class Main {
         }
     }
 
-    int partition(int[] arrayToQuicksort, int begin, int end) {
-        int left = begin;
-        int right = end;
-        int pivot = arrayToQuicksort[(begin + end) / 2];
-        while (left < right) {
-            while (arrayToQuicksort[left] < pivot) {
-                left++;
-                if (left == end) {
+    private int partition(int[] arrayToQuicksort, int begin, int end) {
+        int leftindex = begin;
+        int rightindex = end;
+        int pivotindex = arrayToQuicksort[(begin + end) / 2];
+        while (leftindex < rightindex) {
+            while (arrayToQuicksort[leftindex] < pivotindex) {
+                leftindex++;
+                if (leftindex == end) {
                     break;
                 }
             }
-            while (arrayToQuicksort[right] > pivot) {
-                right--;
-                if (right == begin) {
+            while (arrayToQuicksort[rightindex] > pivotindex) {
+                rightindex--;
+                if (rightindex == begin) {
                     break;
                 }
             }
-            if (left < right) {
-                if (arrayToQuicksort[left] == arrayToQuicksort[right]) {
-                    left++;
+            if (leftindex < rightindex) {
+                if (arrayToQuicksort[leftindex] == arrayToQuicksort[rightindex]) {
+                    leftindex++;
                 } else {
-                    swap(arrayToQuicksort, left, right);
+                    swap(arrayToQuicksort, leftindex, rightindex);
                 }
             }
         }
-        return left;
+        return leftindex;
     }
 
     private void swap(int[] array, int firstIndex, int secondIndex) {

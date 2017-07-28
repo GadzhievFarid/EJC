@@ -3,9 +3,9 @@ package tasks.task_09;
 import java.util.Arrays;
 import java.util.concurrent.ThreadLocalRandom;
 
-public class Main {
+public class RadixAndSelection {
     public static void main(String[] args) {
-        Main main = new Main();
+        RadixAndSelection radixAndSelection = new RadixAndSelection();
         int[] array = new int[15];
         int[] array2 = new int[15];
         for (int i = 0; i < array.length; i++) {
@@ -14,17 +14,17 @@ public class Main {
         }
         System.out.println("Radix sort: ");
         System.out.println(Arrays.toString(array));
-        main.radixSort(array);
+        radixAndSelection.radixSort(array);
         System.out.println(Arrays.toString(array));
 
         System.out.println("Selection sort: ");
         System.out.println(Arrays.toString(array2));
-        main.selectionSort(array2);
+        radixAndSelection.selectionSort(array2);
         System.out.println(Arrays.toString(array2));
 
     }
 
-    int getMax(int[] array) {
+    private int getMax(int[] array) {
         int max = array[0];
         for (int i = 1; i < array.length; i++) {
             if (array[i] > max) {
@@ -34,12 +34,12 @@ public class Main {
         return max;
     }
 
-    void countSort(int[] array, int exp) {
+    private void countSort(int[] array, int exp) {
         int[] count = new int[10];
         int[] result = new int[array.length];
 
-        for (int i = 0; i < array.length; i++) {
-            count[(array[i] / exp) % 10]++;
+        for (int element : array) {
+            count[(element / exp) % 10]++;
         }
         for (int i = 1; i < count.length; i++) {
             count[i] += count[i - 1];
@@ -50,9 +50,7 @@ public class Main {
             count[(array[i] / exp) % 10]--;
         }
 
-        for (int i = 0; i < array.length; i++) {
-            array[i] = result[i];
-        }
+        System.arraycopy(result, 0, array, 0, array.length);
     }
 
     void radixSort(int[] array) {

@@ -7,13 +7,13 @@ import java.util.concurrent.ThreadLocalRandom;
  * Bubble sort and Merge sort
  * Binary search
  */
-public class Main {
+public class BubbleAndMerge {
     public static void main(String[] args) {
-        Main main = new Main();
-        main.sortAndSearch();
+        BubbleAndMerge bubbleAndMerge = new BubbleAndMerge();
+        bubbleAndMerge.sortAndSearch();
     }
 
-    void swap(int[] array, int firstIndex, int secondIndex) {
+    private void swap(int[] array, int firstIndex, int secondIndex) {
         int temp = array[firstIndex];
         array[firstIndex] = array[secondIndex];
         array[secondIndex] = temp;
@@ -37,45 +37,41 @@ public class Main {
 
     int[] mergeSort(int[] array) {
         if (array.length > 1) {
-            int[] firstArray = new int[array.length / 2];
-            int[] secondArray = new int[array.length - firstArray.length];
+            int[] leftArray = new int[array.length / 2];
+            int[] rightArray = new int[array.length - leftArray.length];
 
-            for (int i = 0; i < firstArray.length; i++) {
-                firstArray[i] = array[i];
-            }
-            for (int i = 0; i < secondArray.length; i++) {
-                secondArray[i] = array[firstArray.length + i];
-            }
+            System.arraycopy(array, 0, leftArray, 0, leftArray.length);
+            System.arraycopy(array, leftArray.length, rightArray, 0, rightArray.length);
 
-            firstArray = mergeSort(firstArray);
-            secondArray = mergeSort(secondArray);
+            leftArray = mergeSort(leftArray);
+            rightArray = mergeSort(rightArray);
 
-            merge(array, firstArray, secondArray);
+            merge(array, leftArray, rightArray);
         }
         return array;
     }
 
-    void merge(int[] destArray, int[] firstSourceArray, int[] secondSourceArray) {
-        int destIndex = 0, firstSourceIndex = 0, secondSourceIndex = 0;
-        while (firstSourceIndex != firstSourceArray.length &&
-                secondSourceIndex != secondSourceArray.length) {
-            if (firstSourceArray[firstSourceIndex] < secondSourceArray[secondSourceIndex]) {
-                destArray[destIndex] = firstSourceArray[firstSourceIndex];
+    private void merge(int[] destArray, int[] leftArray, int[] rightArray) {
+        int destIndex = 0, leftArrayIndex = 0, rightArrayIndex = 0;
+        while (leftArrayIndex != leftArray.length &&
+                rightArrayIndex != rightArray.length) {
+            if (leftArray[leftArrayIndex] < rightArray[rightArrayIndex]) {
+                destArray[destIndex] = leftArray[leftArrayIndex];
                 destIndex++;
-                firstSourceIndex++;
+                leftArrayIndex++;
             } else {
-                destArray[destIndex] = secondSourceArray[secondSourceIndex];
+                destArray[destIndex] = rightArray[rightArrayIndex];
                 destIndex++;
-                secondSourceIndex++;
+                rightArrayIndex++;
             }
         }
 
-        for (int i = firstSourceIndex; i < firstSourceArray.length; i++) {
-            destArray[destIndex] = firstSourceArray[i];
+        for (int i = leftArrayIndex; i < leftArray.length; i++) {
+            destArray[destIndex] = leftArray[i];
             destIndex++;
         }
-        for (int i = secondSourceIndex; i < secondSourceArray.length; i++) {
-            destArray[destIndex] = secondSourceArray[i];
+        for (int i = rightArrayIndex; i < rightArray.length; i++) {
+            destArray[destIndex] = rightArray[i];
             destIndex++;
         }
     }
@@ -95,7 +91,7 @@ public class Main {
         return -1;
     }
 
-    void sortAndSearch() {
+    private void sortAndSearch() {
         int[] array = new int[100];
         int[] array1 = new int[100];
         for (int i = 0; i < array.length; i++) {
