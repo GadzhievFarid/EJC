@@ -74,31 +74,31 @@ public class QuickAndInsertion {
     }
 
     private int partition(int[] arrayToQuicksort, int begin, int end) {
-        int leftindex = begin;
-        int rightindex = end;
-        int pivotindex = arrayToQuicksort[(begin + end) / 2];
-        while (leftindex < rightindex) {
-            while (arrayToQuicksort[leftindex] < pivotindex) {
-                leftindex++;
-                if (leftindex == end) {
+        int leftIndex = begin;
+        int rightIndex = end;
+        int pivotIndex = arrayToQuicksort[(begin + end) / 2];
+        while (leftIndex < rightIndex) {
+            while (arrayToQuicksort[leftIndex] < pivotIndex) {
+                leftIndex++;
+                if (leftIndex == end) {
                     break;
                 }
             }
-            while (arrayToQuicksort[rightindex] > pivotindex) {
-                rightindex--;
-                if (rightindex == begin) {
+            while (arrayToQuicksort[rightIndex] > pivotIndex) {
+                rightIndex--;
+                if (rightIndex == begin) {
                     break;
                 }
             }
-            if (leftindex < rightindex) {
-                if (arrayToQuicksort[leftindex] == arrayToQuicksort[rightindex]) {
-                    leftindex++;
+            if (leftIndex < rightIndex) {
+                if (arrayToQuicksort[leftIndex] == arrayToQuicksort[rightIndex]) {
+                    leftIndex++;
                 } else {
-                    swap(arrayToQuicksort, leftindex, rightindex);
+                    swap(arrayToQuicksort, leftIndex, rightIndex);
                 }
             }
         }
-        return leftindex;
+        return leftIndex;
     }
 
     private void swap(int[] array, int firstIndex, int secondIndex) {
@@ -108,7 +108,7 @@ public class QuickAndInsertion {
     }
 
     void insertionSort(int[] arrayToInsertionSort) {
-        for (int i = 0; i < arrayToInsertionSort.length; i++) {
+        for (int i = 1; i < arrayToInsertionSort.length; i++) {
             int currentNumber = arrayToInsertionSort[i];
             int j = i;
             while (j > 0 && currentNumber < arrayToInsertionSort[j - 1]) {

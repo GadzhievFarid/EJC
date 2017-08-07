@@ -46,8 +46,8 @@ public class RadixAndSelection {
         }
 
         for (int i = array.length - 1; i >= 0; i--) {
-            result[count[(array[i] / exp) % 10] - 1] = array[i];
             count[(array[i] / exp) % 10]--;
+            result[count[(array[i] / exp) % 10]] = array[i];
         }
 
         System.arraycopy(result, 0, array, 0, array.length);
