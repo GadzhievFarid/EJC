@@ -21,7 +21,7 @@ public class RadixAndSelection {
         System.out.println(Arrays.toString(array2));
         radixAndSelection.selectionSort(array2);
         System.out.println(Arrays.toString(array2));
-
+        
     }
 
     private int getMax(int[] array) {
