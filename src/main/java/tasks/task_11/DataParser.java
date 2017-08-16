@@ -64,6 +64,7 @@ class DataParser {
     }
 
     private void printToFile(ArrayList<Data> dataArray) {
+        new File(outputDirectory).mkdir();
         try (PrintWriter pw = new PrintWriter(new File(outputDirectory + "report" + extension))) {
             pw.println(headerOutput);
             for (Data data : dataArray) {

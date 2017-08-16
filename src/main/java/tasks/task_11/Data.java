@@ -61,8 +61,7 @@ public class Data implements Comparable<Data> {
         } else {
             return userName +
                     "," + url +
-                    "," + timeSpent +
-                    ",";
+                    "," + timeSpent;
         }
     }
 
