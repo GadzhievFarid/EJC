@@ -8,5 +8,4 @@ class Config {
     static final String delimiter = ",";
     static final String headerInput = "id,url,time,user";
     static final String headerOutput = "user,url,time";
-
 }

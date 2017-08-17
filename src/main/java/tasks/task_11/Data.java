@@ -4,8 +4,15 @@ import org.apache.commons.lang.RandomStringUtils;
 
 import java.util.concurrent.ThreadLocalRandom;
 
+/**
+ * This class represents data stored in single string in *.csv file.
+ */
 public class Data implements Comparable<Data> {
+    /**
+     * Number of strings in all files.
+     */
     private static int count = 0;
+    
     private int id;
     private String url;
     private long timeSpent;
@@ -28,19 +35,19 @@ public class Data implements Comparable<Data> {
         this.userName = RandomStringUtils.random(3, userLetters);
     }
 
-    public long getTimeSpent() {
+    long getTimeSpent() {
         return timeSpent;
     }
 
-    public void setTimeSpent(long timeSpent) {
+    void setTimeSpent(long timeSpent) {
         this.timeSpent = timeSpent;
     }
 
-    public String getUrl() {
+    String getUrl() {
         return url;
     }
 
-    public String getUserName() {
+    String getUserName() {
         return userName;
     }
 
@@ -52,6 +59,9 @@ public class Data implements Comparable<Data> {
                 "," + userName;
     }
 
+    /**
+     * String representation of data with (for data generating) or without id (for report).
+     */
     public String toString(boolean withId) {
         if (withId) {
             return id +

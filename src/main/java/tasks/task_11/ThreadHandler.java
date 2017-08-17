@@ -8,6 +8,9 @@ import java.util.concurrent.PriorityBlockingQueue;
 
 import static tasks.task_11.Config.delimiter;
 
+/**
+ * Thread for reading data from file.
+ */
 public class ThreadHandler implements Runnable {
     private PriorityBlockingQueue<Data> dataQueue;
     private File file;
@@ -17,6 +20,9 @@ public class ThreadHandler implements Runnable {
         this.dataQueue = dataQueue;
     }
 
+    /**
+     * Reads data from file and adds to dataQueue.
+     */
     @Override
     public void run() {
         try (BufferedReader reader = new BufferedReader(new FileReader(file))) {

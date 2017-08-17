@@ -6,6 +6,9 @@ import java.io.PrintWriter;
 
 import static tasks.task_11.Config.*;
 
+/**
+ * Generates files with random data.
+ */
 class DataGenerator {
     void generateFiles() {
         new File(inputDirectory).mkdir();

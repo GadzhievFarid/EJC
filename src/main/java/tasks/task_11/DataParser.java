@@ -11,16 +11,28 @@ import java.util.concurrent.TimeUnit;
 
 import static tasks.task_11.Config.*;
 
+/**
+ *
+ * */
 class DataParser {
-
-    private File[] getAllCSVFiles(String dirName) {
+    /**
+     * Gets all files in a given directory with given extension.
+     *
+     * @param dirName   name of directory.
+     * @param extension extension of files.
+     * @return array of files.
+     */
+    private File[] getAllCSVFiles(String dirName, String extension) {
         File dir = new File(dirName);
         return dir.listFiles((dir1, filename) -> filename.endsWith(extension));
     }
 
+    /**
+     * Parses files in multithreading and creates report.
+     */
     void parse() {
         PriorityBlockingQueue<Data> dataQueue = new PriorityBlockingQueue<>();
-        File[] files = getAllCSVFiles(inputDirectory);
+        File[] files = getAllCSVFiles(inputDirectory, extension);
         int threadNumber = files.length >= maxThreadNumber ? maxThreadNumber : files.length;
 
         ExecutorService service = Executors.newFixedThreadPool(threadNumber);
@@ -49,6 +61,11 @@ class DataParser {
         System.out.println("Job's done!");
     }
 
+    /**
+     * Groups data by users and sites and sums time spent on the same sites by the same user.
+     *
+     * @param dataArray array with Data to group.
+     */
     private void groupByUserAndSites(ArrayList<Data> dataArray) {
         for (int i = 0; i < dataArray.size() - 1; i++) {
             Data currentElement = dataArray.get(i);
@@ -63,6 +80,11 @@ class DataParser {
         }
     }
 
+    /**
+     * Prints report to output file.
+     *
+     * @param dataArray array with Data to print.
+     */
     private void printToFile(ArrayList<Data> dataArray) {
         new File(outputDirectory).mkdir();
         try (PrintWriter pw = new PrintWriter(new File(outputDirectory + "report" + extension))) {
